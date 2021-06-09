@@ -30,7 +30,7 @@
 
  Your solution should not modify any of the function arguments
 */
-const groupEventsByDay = (events) => {
+export const groupEventsByDay = (events) => {
   return events;
 };
 
