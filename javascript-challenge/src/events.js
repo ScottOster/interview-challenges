@@ -1,3 +1,5 @@
+const { eventSorter, findDaysFromStart } = require('./utils');
+
 /** 
   An event could look like this:
   ```
@@ -30,8 +32,22 @@
 
  Your solution should not modify any of the function arguments
 */
-export const groupEventsByDay = (events) => {
-  return events;
+const groupEventsByDay = (events) => {
+  const newEventsArray = [...events];
+  const sortedEventsArr = eventSorter(newEventsArray);
+  const earliestDate = sortedEventsArr[0].startsAt;
+  const eventsMappedByDay = {};
+  sortedEventsArr.map((event) => {
+    let daysDifference = findDaysFromStart(event.startsAt, earliestDate);
+    if (eventsMappedByDay[daysDifference] === undefined) {
+      eventsMappedByDay[daysDifference] = [];
+      eventsMappedByDay[daysDifference].push(event);
+    } else {
+      eventsMappedByDay[daysDifference].push(event);
+    }
+  });
+
+  return eventsMappedByDay;
 };
 
 /** 
@@ -72,3 +88,5 @@ export const groupEventsByDay = (events) => {
 const moveEventToDay = (eventsByDay, id, toDay) => {
   return eventsByDay;
 };
+
+module.exports = { groupEventsByDay, moveEventToDay };

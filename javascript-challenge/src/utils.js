@@ -1,6 +1,6 @@
 var differenceInCalendarDays = require('date-fns/differenceInCalendarDays');
 
-const daysFromStart = (activityDate, earliestDate) => {
+const findDaysFromStart = (activityDate, earliestDate) => {
   const difference = differenceInCalendarDays(
     new Date(activityDate),
     new Date(earliestDate),
@@ -12,8 +12,8 @@ const eventSorter = (newEventsArray) => {
   const sortedEventsArray = newEventsArray.sort((a, b) => {
     return new Date(a.startsAt) - new Date(b.startsAt);
   });
-  console.log(sortedEventsArray);
+
   return sortedEventsArray;
 };
 
-module.exports = { daysFromStart, eventSorter };
+module.exports = { findDaysFromStart, eventSorter };

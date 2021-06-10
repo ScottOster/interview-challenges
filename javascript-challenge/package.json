@@ -5,7 +5,8 @@
   "scripts": {
     "format": "prettier --write **/*.{js,md}",
     "test": "jest",
-    "test utils": "jest ./utils.test.js"
+    "test utils": "jest ./utils.test.js",
+    "test events": "jest ./events.test.js"
   },
   "prettier": {
     "trailingComma": "all",
