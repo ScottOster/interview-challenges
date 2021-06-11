@@ -1,4 +1,6 @@
-var differenceInCalendarDays = require('date-fns/differenceInCalendarDays');
+const differenceInCalendarDays = require('date-fns/differenceInCalendarDays');
+const addDays = require('date-fns/add');
+const removeDays = require('date-fns/sub');
 
 const findDaysFromStart = (activityDate, earliestDate) => {
   const difference = differenceInCalendarDays(
@@ -16,4 +18,40 @@ const eventSorter = (newEventsArray) => {
   return sortedEventsArray;
 };
 
-module.exports = { findDaysFromStart, eventSorter };
+const eventDatesChanger = (changeInDays, startsAt, endsAt) => {
+  const newDatesArray = [];
+
+  if (changeInDays > 0) {
+    newDatesArray.push(
+      addDays(new Date(startsAt), {
+        days: changeInDays,
+      }),
+    );
+
+    newDatesArray.push(
+      addDays(new Date(endsAt), {
+        days: changeInDays,
+      }),
+    );
+  } else {
+    newDatesArray.push(
+      removeDays(new Date(startsAt), {
+        days: Math.abs(changeInDays),
+      }),
+    );
+
+    newDatesArray.push(
+      removeDays(new Date(endsAt), {
+        days: Math.abs(changeInDays),
+      }),
+    );
+  }
+
+  const datesWithoutMilliseconds = newDatesArray.map((date) => {
+    return date.toISOString().split('.')[0] + 'Z';
+  });
+
+  return datesWithoutMilliseconds;
+};
+
+module.exports = { findDaysFromStart, eventSorter, eventDatesChanger };

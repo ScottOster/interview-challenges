@@ -1,4 +1,8 @@
-const { eventSorter, findDaysFromStart } = require('./utils');
+const {
+  eventSorter,
+  findDaysFromStart,
+  eventDatesChanger,
+} = require('./utils');
 
 /** 
   An event could look like this:
@@ -32,12 +36,13 @@ const { eventSorter, findDaysFromStart } = require('./utils');
 
  Your solution should not modify any of the function arguments
 */
+
 const groupEventsByDay = (events) => {
   const newEventsArray = [...events];
   const sortedEventsArr = eventSorter(newEventsArray);
   const earliestDate = sortedEventsArr[0].startsAt;
   const eventsMappedByDay = {};
-  sortedEventsArr.map((event) => {
+  sortedEventsArr.forEach((event) => {
     let daysDifference = findDaysFromStart(event.startsAt, earliestDate);
     if (eventsMappedByDay[daysDifference] === undefined) {
       eventsMappedByDay[daysDifference] = [];
@@ -85,8 +90,32 @@ const groupEventsByDay = (events) => {
 
   Your solution should not modify any of the function arguments
 */
+
 const moveEventToDay = (eventsByDay, id, toDay) => {
-  return eventsByDay;
+  const newEventsByDay = { ...eventsByDay };
+  const adjustedEventsArray = [];
+
+  for (let day in newEventsByDay) {
+    newEventsByDay[day].map((events) => {
+      if (events.id === id) {
+        const changeInDays = toDay - day;
+        events.startsAt = eventDatesChanger(
+          changeInDays,
+          events.startsAt,
+          events.endsAt,
+        )[0];
+        events.endsAt = eventDatesChanger(
+          changeInDays,
+          events.startsAt,
+          events.endsAt,
+        )[1];
+      }
+
+      adjustedEventsArray.push(events);
+    });
+  }
+
+  return groupEventsByDay(adjustedEventsArray);
 };
 
 module.exports = { groupEventsByDay, moveEventToDay };

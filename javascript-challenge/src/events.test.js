@@ -1,21 +1,6 @@
-const { groupEventsByDay } = require('./events');
+const { groupEventsByDay, moveEventToDay } = require('./events');
 
-/*
-create new object so its not mutating 
-sort events ascending by date 
-from this we have first event date/time
-calculate difference in days for each event and add them to new object under key of said day difference
-(may need to check if key exists already)
-each days events should be sorted in ascnding order of starts at 
-
-
-
-
-
-
-*/
-
-describe.only('groupEventsByDay', () => {
+describe('groupEventsByDay', () => {
   it('should return an object when passed an array ', () => {
     const actualOutput = groupEventsByDay(['test']);
     expect(typeof actualOutput).toBe('object');
@@ -197,4 +182,324 @@ describe.only('groupEventsByDay', () => {
   });
 });
 
-test('moveEvent', () => {});
+describe('moveEventToDay', () => {
+  it('should return an object when passed an object ', () => {
+    const eventsByDay = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:11Z',
+          endsAt: '2021-01-01T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+    const actualOutput = moveEventToDay(eventsByDay);
+    expect(typeof actualOutput).toBe('object');
+  });
+
+  it('should adjust the start and end date of event with specific id, and move event to correct new day  ', () => {
+    const eventsByDay = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:11Z',
+          endsAt: '2021-01-01T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      2: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T13:01:11Z',
+          endsAt: '2021-01-03T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+
+    const actualOutput = moveEventToDay(eventsByDay, 102, 5);
+
+    const expectedOutput = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:11Z',
+          endsAt: '2021-01-01T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+
+      2: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T13:01:11Z',
+          endsAt: '2021-01-03T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      5: [
+        {
+          id: 102,
+          startsAt: '2021-01-06T13:01:11Z',
+          endsAt: '2021-01-06T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+
+    expect(expectedOutput).toEqual(actualOutput);
+  });
+  it('should work for adding events to already existing days  ', () => {
+    const eventsByDay = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:11Z',
+          endsAt: '2021-01-01T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      2: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T11:01:11Z',
+          endsAt: '2021-01-03T12:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+
+    const actualOutput = moveEventToDay(eventsByDay, 103, 3);
+
+    const expectedOutput = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:11Z',
+          endsAt: '2021-01-01T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+
+      3: [
+        {
+          id: 103,
+          startsAt: '2021-01-04T11:01:11Z',
+          endsAt: '2021-01-04T12:01:11Z',
+          title: 'Daily walk',
+        },
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+
+    expect(expectedOutput).toEqual(actualOutput);
+  });
+
+  it('should work when changing the earliest event , and adjust all subsequent plans from the new zero day', () => {
+    const eventsByDay = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:09Z',
+          endsAt: '2021-01-01T15:01:09Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      2: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T13:01:11Z',
+          endsAt: '2021-01-03T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+
+    const actualOutput = moveEventToDay(eventsByDay, 101, 1);
+
+    const expectedOutput = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-02T13:01:09Z',
+          endsAt: '2021-01-02T15:01:09Z',
+          title: 'Daily walk',
+        },
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T13:01:11Z',
+          endsAt: '2021-01-03T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      2: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+    expect(expectedOutput).toEqual(actualOutput);
+  });
+
+  it('should be able to move events backwards (schedule for earlier day)', () => {
+    const eventsByDay = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:09Z',
+          endsAt: '2021-01-01T15:01:09Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      2: [
+        {
+          id: 103,
+          startsAt: '2021-01-03T13:01:09Z',
+          endsAt: '2021-01-03T15:01:09Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+    const actualOutput = moveEventToDay(eventsByDay, 103, 1);
+
+    const expectedOutput = {
+      0: [
+        {
+          id: 101,
+          startsAt: '2021-01-01T13:01:09Z',
+          endsAt: '2021-01-01T15:01:09Z',
+          title: 'Daily walk',
+        },
+      ],
+      1: [
+        {
+          id: 103,
+          startsAt: '2021-01-02T13:01:09Z',
+          endsAt: '2021-01-02T15:01:09Z',
+          title: 'Daily walk',
+        },
+        {
+          id: 102,
+          startsAt: '2021-01-02T13:01:11Z',
+          endsAt: '2021-01-02T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+      3: [
+        {
+          id: 104,
+          startsAt: '2021-01-04T13:01:11Z',
+          endsAt: '2021-01-05T15:01:11Z',
+          title: 'Daily walk',
+        },
+      ],
+    };
+    expect(expectedOutput).toEqual(actualOutput);
+  });
+});
