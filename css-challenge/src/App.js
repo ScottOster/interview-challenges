@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
-import DateNow from './date';
+import DateNow from './Date';
+import ExcercisesCards from './ExcercisesCards';
 
 function App() {
   return (
@@ -26,12 +27,13 @@ function App() {
         </section>
         <h1 className="feelingsHeader">How do you feel?</h1>
         <section className="emojiFeelingsContainer">
-          <p>&#128530;</p>
-          <p>&#128524;</p>
-          <p>&#128513;</p>
-          <p>&#128516;</p>
+          <p className="emojiFeelingsButton">&#128530;</p>
+          <p className="emojiFeelingsButton">&#128524;</p>
+          <p className="emojiFeelingsButton">&#128513;</p>
+          <p className="emojiFeelingsButton">&#128516;</p>
         </section>
-        <section className="excercisesContainer">excer cont</section>
+
+        <ExcercisesCards />
       </div>
     </div>
   );

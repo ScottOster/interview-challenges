@@ -26,7 +26,7 @@ body {
   padding: 5vh;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 10vh 10vh 10vh 50vh;
+  grid-template-rows: 10vh 10vh 15vh 45vh;
   grid-template-areas:
     'header'
     'search'
@@ -41,19 +41,21 @@ body {
   justify-content: space-between;
 }
 .searchInputContainer {
-  grid-area: 'search';
+  grid-area: search;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 .emojiFeelingsContainer {
-  grid-area: 'feelings';
+  grid-area: feelings;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .excercisesContainer {
+  margin-top: 15vh;
 }
+
 .navBarContainer {
 }
 
@@ -73,7 +75,6 @@ body {
   padding: 12px;
   border-radius: 10px;
   background-color: rgba(143, 177, 209, 0.4);
-  color: white;
 }
 
 .searchBar {
@@ -81,6 +82,7 @@ body {
   height: 5vh;
   border: none;
   background-color: rgba(143, 177, 209, 0.4);
+  width: 100%;
 }
 
 ::placeholder {
@@ -90,5 +92,36 @@ body {
 }
 
 .feelingsHeader {
-  grid-area: 'feelings';
+  grid-area: feelings;
+
+  font-size: 1.8vh;
+  margin-bottom: 50%;
+}
+
+.emojiFeelingsButton {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: rgba(143, 177, 209, 0.4);
+}
+
+.excerciseCard {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 100%;
+  grid-template-areas: 'left centre right';
+}
+
+.excerciseTitle {
+  color: black;
+  grid-area: centre;
+}
+
+.excerciseImage {
+  height: 20px;
+  grid-area: left;
+}
+
+.excerciseAmount {
+  color: black;
+  grid-area: centre;
 }
