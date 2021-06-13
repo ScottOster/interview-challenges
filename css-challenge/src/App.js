@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import DateNow from './Date';
 import ExcercisesCards from './ExcercisesCards';
+import NavBAr from './NavBar';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         </section>
 
         <ExcercisesCards />
+        <NavBAr />
       </div>
     </div>
   );

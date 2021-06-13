@@ -13,7 +13,6 @@ body {
 
 .App {
   background-color: rgb(229, 233, 244);
-  padding: 40px;
 }
 
 .Container {
@@ -23,10 +22,10 @@ body {
   color: white;
 
   font-weight: bold;
-  padding: 5vh;
+
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 10vh 10vh 15vh 45vh;
+  grid-template-rows: 10vh 10vh 15vh 65vh;
   grid-template-areas:
     'header'
     'search'
@@ -38,7 +37,7 @@ body {
   grid-area: header;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .searchInputContainer {
   grid-area: search;
@@ -50,13 +49,13 @@ body {
   grid-area: feelings;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .excercisesContainer {
-  margin-top: 15vh;
-}
-
-.navBarContainer {
+  margin-top: 40vh;
+  padding-top: 4vh;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .greeting {
@@ -82,7 +81,7 @@ body {
   height: 5vh;
   border: none;
   background-color: rgba(143, 177, 209, 0.4);
-  width: 100%;
+  width: 80%;
 }
 
 ::placeholder {
@@ -95,7 +94,8 @@ body {
   grid-area: feelings;
 
   font-size: 1.8vh;
-  margin-bottom: 50%;
+  margin-left: 4vw;
+  margin-bottom: 10vh;
 }
 
 .emojiFeelingsButton {
@@ -109,19 +109,61 @@ body {
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 100%;
   grid-template-areas: 'left centre right';
+  background: linear-gradient(rgb(73, 66, 66) rgb(8, 8, 8));
+  border: solid;
+  border-color: black;
+  margin-top: 5px;
 }
 
 .excerciseTitle {
   color: black;
   grid-area: centre;
+  font-size: 1.6vh;
 }
 
 .excerciseImage {
-  height: 20px;
+  height: 40px;
   grid-area: left;
+  align-self: center;
+  justify-self: center;
+  border: solid;
+  border-color: rgb(62, 126, 184);
+  border-radius: 15px;
 }
 
 .excerciseAmount {
   color: black;
   grid-area: centre;
+  padding-top: 50px;
+  font-size: 1.5vh;
+}
+
+.navBarContainer {
+}
+
+.navBar {
+  background-color: white;
+  padding: 25px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.homeImage {
+  height: 4vh;
+  padding-right: 16vw;
+}
+
+.squaresImage {
+  height: 4vh;
+  padding-right: 16vw;
+}
+
+.messageImage {
+  height: 4vh;
+  padding-right: 16vw;
+}
+
+.profileImage {
+  height: 4vh;
 }

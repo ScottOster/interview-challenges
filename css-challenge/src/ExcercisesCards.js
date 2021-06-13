@@ -25,19 +25,43 @@ const excerciseData = [
   },
   {
     id: 123456722,
-    image: '../src/images/book.png',
+    image: bookImage,
     title: 'Reading Skills2',
     amount: '22 Excecises',
   },
   {
     id: 765432122,
-    image: '../src/images/speaking.png',
+    image: speakImage,
     title: 'Speaking Skills2',
     amount: '25 Excercises',
   },
   {
     id: 1234522,
-    image: '../src/images/listening.png',
+    image: listenImage,
+    title: 'Listening Skills2',
+    amount: '28 Excercises',
+  },
+  {
+    id: 1234522,
+    image: listenImage,
+    title: 'Listening Skills2',
+    amount: '28 Excercises',
+  },
+  {
+    id: 765432122,
+    image: speakImage,
+    title: 'Speaking Skills2',
+    amount: '25 Excercises',
+  },
+  {
+    id: 1234522,
+    image: listenImage,
+    title: 'Listening Skills2',
+    amount: '28 Excercises',
+  },
+  {
+    id: 1234522,
+    image: listenImage,
     title: 'Listening Skills2',
     amount: '28 Excercises',
   },
@@ -52,9 +76,8 @@ const ExcercisesCards = () => {
             {' '}
             <p key={excercise.title} className=" excerciseTitle">
               {excercise.title}
-            </p>
-            <p key={excercise.amount} className=" excerciseAmount">
-              {excercise.amount}
+              <br></br>
+              <span className="excerciseAmount">{excercise.amount}</span>
             </p>
             <img src={excercise.image} className=" excerciseImage"></img>
           </div>
