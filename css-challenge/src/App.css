@@ -18,7 +18,7 @@ body {
 .Container {
   align-items: center;
   background-color: rgb(62, 126, 184);
-  border-radius: 25px;
+
   color: white;
 
   font-weight: bold;
@@ -38,24 +38,27 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 5vh;
 }
 .searchInputContainer {
-  grid-area: search;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-self: center;
+  margin-top: 2vh;
 }
 .emojiFeelingsContainer {
   grid-area: feelings;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 10vw;
 }
 .excercisesContainer {
   margin-top: 40vh;
   padding-top: 4vh;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 42px;
+  padding-bottom: 12vh;
+  padding-left: 8vw;
+  padding-right: 8vw;
 }
 
 .greeting {
@@ -78,10 +81,10 @@ body {
 
 .searchBar {
   border-radius: 10px;
-  height: 5vh;
+  height: 6vh;
   border: none;
   background-color: rgba(143, 177, 209, 0.4);
-  width: 80%;
+  width: 75vw;
 }
 
 ::placeholder {
@@ -94,14 +97,25 @@ body {
   grid-area: feelings;
 
   font-size: 1.8vh;
-  margin-left: 4vw;
+  margin-left: 7vw;
   margin-bottom: 10vh;
+  padding-left: 6vw;
 }
 
 .emojiFeelingsButton {
-  padding: 12px;
+  margin-top: 6vh;
+  padding: 15px;
   border-radius: 10px;
   background-color: rgba(143, 177, 209, 0.4);
+}
+.emojiTextContainer {
+  grid-area: feelings;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 7vw;
+  font-size: 2.5vw;
+  margin-top: 14vh;
 }
 
 .excerciseCard {
@@ -111,7 +125,9 @@ body {
   grid-template-areas: 'left centre right';
   background: linear-gradient(rgb(73, 66, 66) rgb(8, 8, 8));
   border: solid;
-  border-color: black;
+  border-width: 1px;
+  border-radius: 15px;
+  border-color: rgb(218, 215, 215);
   margin-top: 5px;
 }
 
@@ -138,7 +154,9 @@ body {
   font-size: 1.5vh;
 }
 
-.navBarContainer {
+.eCardDots {
+  grid-area: right;
+  margin-left: 65%;
 }
 
 .navBar {
@@ -166,4 +184,161 @@ body {
 
 .profileImage {
   height: 4vh;
+}
+
+/*tablets portrait*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .searchBar {
+    width: 62vw;
+  }
+  .emojiTextContainer {
+    padding-left: 10vw;
+    margin-top: 22vh;
+  }
+  .emojiFeelingsContainer {
+    margin-top: 3vh;
+  }
+  .emojiFeelingsButton {
+    padding: 3vw;
+  }
+  .feelingsHeader {
+    font-size: 3vh;
+  }
+  .homeImage {
+    height: 4vh;
+    padding-right: 20vw;
+    padding-left: 5vw;
+  }
+
+  .squaresImage {
+    height: 4vh;
+    padding-right: 20vw;
+  }
+
+  .messageImage {
+    height: 4vh;
+    padding-right: 20vw;
+  }
+
+  .profileImage {
+    height: 4vh;
+  }
+}
+
+/*Tablets Landscape*/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .headerContainer {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+  }
+  .greeting {
+    font-size: 2.5vh;
+    margin-left: 5vw;
+  }
+
+  .bell {
+    margin-right: 5vw;
+  }
+
+  .searchBar {
+    width: 62vw;
+  }
+  .emojiTextContainer {
+    padding-left: 9.5vw;
+    margin-top: 22vh;
+    font-size: 2vw;
+  }
+  .emojiFeelingsContainer {
+    margin-top: 3vh;
+  }
+  .emojiFeelingsButton {
+    padding: 2vw;
+  }
+  .feelingsHeader {
+    font-size: 2vh;
+  }
+  .homeImage {
+    height: 4vh;
+    padding-right: 23vw;
+    padding-left: 6vw;
+  }
+
+  .squaresImage {
+    height: 4vh;
+    padding-right: 23vw;
+  }
+
+  .messageImage {
+    height: 4vh;
+    padding-right: 23vw;
+  }
+
+  .profileImage {
+    height: 4vh;
+  }
+}
+
+/*laptops*/
+
+@media screen and (min-device-width: 1025px) {
+  .headerContainer {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+  }
+  .greeting {
+    font-size: 4vh;
+    margin-left: 3vw;
+  }
+
+  .bell {
+    margin-right: 5vw;
+  }
+
+  .searchBar {
+    width: 62vw;
+  }
+  .emojiTextContainer {
+    padding-left: 9.5vw;
+    margin-top: 32vh;
+    font-size: 2vw;
+  }
+  .emojiFeelingsContainer {
+    margin-top: 10vh;
+  }
+  .emojiFeelingsButton {
+    padding: 2vw;
+  }
+  .feelingsHeader {
+    font-size: 4vh;
+  }
+
+  .excercisesContainer {
+    margin-top: 66vh;
+  }
+  .homeImage {
+    height: 4vh;
+    padding-right: 26vw;
+    padding-left: 5vw;
+  }
+
+  .squaresImage {
+    height: 4vh;
+    padding-right: 26vw;
+  }
+
+  .messageImage {
+    height: 4vh;
+    padding-right: 26vw;
+  }
+
+  .profileImage {
+    height: 4vh;
+  }
 }

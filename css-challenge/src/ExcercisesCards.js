@@ -1,8 +1,9 @@
-import React, { Image } from 'react';
+import React from 'react';
 
 import bookImage from './images/book.png';
 import speakImage from './images/speaking.png';
 import listenImage from './images/listening.png';
+import dotsImage from './images/dots.png';
 
 const excerciseData = [
   {
@@ -80,6 +81,7 @@ const ExcercisesCards = () => {
               <span className="excerciseAmount">{excercise.amount}</span>
             </p>
             <img src={excercise.image} className=" excerciseImage"></img>
+            <img src={dotsImage} className="eCardDots"></img>
           </div>
         );
       })}
