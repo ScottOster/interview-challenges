@@ -50,6 +50,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   padding: 10vw;
+  text-align: center;
 }
 .excercisesContainer {
   margin-top: 40vh;
@@ -103,19 +104,14 @@ body {
 }
 
 .emojiFeelingsButton {
-  margin-top: 6vh;
-  padding: 15px;
+  margin-top: 8vh;
+  padding: 2.5vw;
   border-radius: 10px;
   background-color: rgba(143, 177, 209, 0.4);
 }
-.emojiTextContainer {
-  grid-area: feelings;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 7vw;
+
+.emojiText {
   font-size: 2.5vw;
-  margin-top: 14vh;
 }
 
 .excerciseCard {
@@ -191,15 +187,15 @@ body {
   .searchBar {
     width: 62vw;
   }
-  .emojiTextContainer {
-    padding-left: 10vw;
-    margin-top: 22vh;
-  }
+
   .emojiFeelingsContainer {
     margin-top: 3vh;
   }
   .emojiFeelingsButton {
-    padding: 3vw;
+    padding: 3.8vw;
+  }
+  .emojiText {
+    font-size: 2vw;
   }
   .feelingsHeader {
     font-size: 3vh;
@@ -247,16 +243,15 @@ body {
   .searchBar {
     width: 62vw;
   }
-  .emojiTextContainer {
-    padding-left: 9.5vw;
-    margin-top: 22vh;
-    font-size: 2vw;
-  }
+
   .emojiFeelingsContainer {
     margin-top: 3vh;
   }
   .emojiFeelingsButton {
     padding: 2vw;
+  }
+  .emojiText {
+    font-size: 1vw;
   }
   .feelingsHeader {
     font-size: 2vh;
@@ -310,10 +305,14 @@ body {
     font-size: 2vw;
   }
   .emojiFeelingsContainer {
-    margin-top: 10vh;
+    margin-top: 15vh;
   }
   .emojiFeelingsButton {
-    padding: 2vw;
+    padding: 2.8vw;
+  }
+
+  .emojiText {
+    font-size: 1.5vw;
   }
   .feelingsHeader {
     font-size: 4vh;

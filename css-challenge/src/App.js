@@ -28,17 +28,25 @@ function App() {
         </section>
         <h1 className="feelingsHeader">How do you feel?</h1>
         <section className="emojiFeelingsContainer">
-          <p className="emojiFeelingsButton">&#128530;</p>
+          <div className="emojiAndTextDiv">
+            <p className="emojiFeelingsButton">&#128530;</p>
+            <p className="emojiText">Badly</p>
+          </div>
 
-          <p className="emojiFeelingsButton">&#128524;</p>
-          <p className="emojiFeelingsButton">&#128513;</p>
-          <p className="emojiFeelingsButton">&#128516;</p>
-        </section>
-        <section className="emojiTextContainer">
-          <p>Badly</p>
-          <p>Fine</p>
-          <p>well</p>
-          <p>Excellent</p>
+          <div className="emojiAndTextDiv">
+            <p className="emojiFeelingsButton">&#128524;</p>
+            <p className="emojiText">Fine</p>
+          </div>
+
+          <div className="emojiAndTextDiv">
+            <p className="emojiFeelingsButton">&#128513;</p>
+            <p className="emojiText">well</p>
+          </div>
+
+          <div className="emojiAndTextDiv">
+            <p className="emojiFeelingsButton">&#128516;</p>
+            <p className="emojiText">Excellent</p>
+          </div>
         </section>
 
         <ExcercisesCards />
